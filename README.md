@@ -1,6 +1,6 @@
 # diarymovie
 
-A new Flutter application.
+flutter 기반 영화 다이어리
 
 ## Getting Started
 
