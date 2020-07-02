@@ -32,7 +32,8 @@ class MovieCard extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     //image: AssetImage(resultMovie.posterPath),
-                    image: NetworkImage(resultMovie.posterPath),
+                    //image: NetworkImage(resultMovie.posterPath),
+                    image: NetworkImage(resultMovie.backdropPath),
                   ),
                 ),
               ),
@@ -42,10 +43,7 @@ class MovieCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
             child: Text(
               resultMovie.title,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600 ),
             ),
           ),
           Row(

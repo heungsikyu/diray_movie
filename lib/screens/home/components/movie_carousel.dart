@@ -12,8 +12,10 @@ class MovieCarousel extends StatefulWidget {
 }
 
 class _MovieCarouselState extends State<MovieCarousel> {
+
   PageController _pageController;
   int initialPage = 1;
+  int fetchInitPage = 1;
 
  Future<List<Result>> resultMovies ;
 
@@ -21,18 +23,19 @@ class _MovieCarouselState extends State<MovieCarousel> {
   void initState() {
     print(" movie carousel 3-1 init");
     super.initState();
-    resultMovies = ApiFetchServices.getPopularMovie();
+    resultMovies = ApiFetchServices.getPopularMovie(fetchInitPage);
     _pageController = PageController(
       viewportFraction: 0.8,
       initialPage: initialPage,
     );
+
   }
 
   @override
   void didChangeDependencies() {
     print(" movie carousel 3-2 did");
     super.didChangeDependencies();
-    resultMovies = ApiFetchServices.getPopularMovie();
+    //resultMovies = ApiFetchServices.getPopularMovie("1");
   }
 
   @override
@@ -45,22 +48,24 @@ class _MovieCarouselState extends State<MovieCarousel> {
   @override
   Widget build(BuildContext context) {
     print(" movie carousel 3-3 build");
+    print(initialPage);
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
+      padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
       child: FutureBuilder<List<Result>>(
         future: resultMovies,
         builder: (context, snapshot) {
           if (snapshot.hasData){
             return AspectRatio(
-              aspectRatio: 0.85,
+              aspectRatio: 1.5,
               child: PageView.builder(
+                  controller: _pageController,
+                  physics: ClampingScrollPhysics(),
                   onPageChanged: (value) {
                     setState(() {
+
                       initialPage = value;
                     });
                   },
-                  controller: _pageController,
-                  physics: ClampingScrollPhysics(),
                   //itemCount: movies.length,
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) => buildMovieSlider(snapshot.data, index)
@@ -71,7 +76,6 @@ class _MovieCarouselState extends State<MovieCarousel> {
           }
         }
       ),
-      
     );
   }
 
@@ -81,7 +85,8 @@ class _MovieCarouselState extends State<MovieCarousel> {
       double value = 0;
       if (_pageController.position.haveDimensions) {
         value = index - _pageController.page;
-        value = (value * 0.038).clamp(-1, 1);
+        //value = (value * 0.038).clamp(-1, 1);
+        value = (value * 0.00).clamp(-1, 1);
       }
       return AnimatedOpacity(
         duration: Duration(milliseconds: 350),
