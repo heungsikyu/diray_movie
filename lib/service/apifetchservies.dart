@@ -23,6 +23,8 @@ class ApiFetchServices {
     }
   }
 
+
+
   //영화 캐스트 정보
   static Future<List<Cast>> getMovieCast(String movieId) async {
     String movieCastUrl = API_BASIC_URL +

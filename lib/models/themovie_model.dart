@@ -5,12 +5,10 @@
 import 'dart:convert';
 
 TheMovie theMovieFromJson(String str) => TheMovie.fromJson(json.decode(str));
-
 String theMovieToJson(TheMovie data) => json.encode(data.toJson());
 
 const String POSTER_THUMB_BASE_URL = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
 const String BACKGROUND_BASE_URL = "https://image.tmdb.org/t/p/w500_and_h282_face";
-
 
 class TheMovie {
   TheMovie({

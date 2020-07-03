@@ -14,7 +14,7 @@ class _MovieScreenBodyState extends State<MovieScreenBody> {
   double xOffSet = 0;
   double yOffSet = 0;
   double scaleFactor = 1;
-  bool isDrawerOpen = false;
+  bool isMenuOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,74 +28,65 @@ class _MovieScreenBodyState extends State<MovieScreenBody> {
         ..scale(scaleFactor),
       duration: Duration(milliseconds: 200),
       // child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: kDefaultPadding * 2.5),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                isDrawerOpen
-                    ? IconButton(
-                        icon: Icon(Icons.arrow_back_ios),
-                        onPressed: () {
-                          setState(() {
-                            xOffSet = 0;
-                            yOffSet = 0;
-                            scaleFactor = 1;
-                            isDrawerOpen = false;
-                          });
-                        },
-                      )
-                    : IconButton(
-                        icon: Icon(Icons.menu),
-                        onPressed: () {
-                          setState(() {
-                            xOffSet = 230.0;
-                            yOffSet = 150.0;
-                            scaleFactor = 0.6;
-                            isDrawerOpen = true;
-                          });
-                        }),
-                Column(
-                  children: <Widget>[
-                    Text('영화다이어리'),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    //CircleAvatar(),
-                  ],
-                ),
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: kDefaultPadding * 2),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  isMenuOpen
+                      ? IconButton(
+                          icon: Icon(Icons.arrow_back_ios),
+                          onPressed: () {
+                            setState(() {
+                              xOffSet = 0;
+                              yOffSet = 0;
+                              scaleFactor = 1;
+                              isMenuOpen = false;
+                            });
+                          },
+                        )
+                      : IconButton(
+                          icon: Icon(Icons.menu),
+                          onPressed: () {
+                            setState(() {
+                              xOffSet = 250.0;
+                              yOffSet = 150.0;
+                              scaleFactor = 0.6;
+                              isMenuOpen = true;
+                            });
+                          }),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        '영화다이어리',
+                        style: TextStyle(
+                            fontFamily: 'GmarketSans',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      CircleAvatar(),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          CategoryList(),
-          Genres(),
-          SizedBox(height: kDefaultPadding),
-          MovieCarousel(),
-        ],
+            CategoryList(),
+            // Genres(),
+            SizedBox(height: kDefaultPadding),
+            MovieCarousel(),
+            MovieCarousel(),
+            MovieCarousel(),
+          ],
+        ),
       ),
     );
-    // );
   }
 }
-
-//class MovieScreenBody extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    print('body build 2 - stateless');
-//
-//    return SingleChildScrollView(
-//      child: Column(
-//        children: <Widget>[
-//          CategoryList(),
-//          Genres(),
-//          SizedBox(height: kDefaultPadding),
-//          MovieCarousel(),
-//        ],
-//      ),
-//    );
-//  }
-//}

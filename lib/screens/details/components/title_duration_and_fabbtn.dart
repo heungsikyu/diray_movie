@@ -1,3 +1,4 @@
+import 'package:date_time_format/date_time_format.dart';
 import 'package:diarymovie/models/themovie_model.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
@@ -25,10 +26,12 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 SizedBox(height: kDefaultPadding / 2),
+
                 Row(
                   children: <Widget>[
+
                     Text(
-                      "${resultMovie.releaseDate}",
+                      "출시일: ${DateTimeFormat.format(resultMovie.releaseDate, format:'Y-m-d')}",
                       style: TextStyle(color: kTextLightColor),
                     ),
                     SizedBox(width: kDefaultPadding),

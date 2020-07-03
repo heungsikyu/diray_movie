@@ -12,7 +12,7 @@ class _CategoryListState extends State<CategoryList> {
 
   List<String> categories = [
     '영화',
-    'TV프로그',
+    'TV프로그램',
     '인물',
   ];
 
@@ -43,8 +43,8 @@ class _CategoryListState extends State<CategoryList> {
           children: <Widget>[
             Text(
               categories[index],
-              style: Theme.of(context).textTheme.headline6.copyWith(
-                fontWeight: FontWeight.w400,
+              style: //Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.w400,
+              TextStyle(fontFamily: 'GmarketSans',fontWeight: FontWeight.w700,fontSize: 20.0,
                 color: index == selectedCategory
                     ? kTextColor
                     : Colors.black.withOpacity(0.4),
